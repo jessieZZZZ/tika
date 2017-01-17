@@ -57,8 +57,6 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.PasswordProvider;
 import org.apache.tika.parser.RecursiveParserWrapper;
-import org.apache.tika.parser.ocr.TesseractOCRConfig;
-import org.apache.tika.parser.ocr.TesseractOCRParser;
 import org.apache.tika.sax.BasicContentHandlerFactory;
 import org.apache.tika.sax.BodyContentHandler;
 import org.apache.tika.sax.ContentHandlerDecorator;
@@ -85,8 +83,7 @@ public class PDFParserTest extends TikaTest {
         if (hasTesseract != null) {
             return hasTesseract;
         }
-        hasTesseract = new TesseractOCRParser().hasTesseract(new TesseractOCRConfig());
-        return hasTesseract;
+        return false;
     }
 
     @BeforeClass

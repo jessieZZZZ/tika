@@ -18,25 +18,28 @@
   under the License.
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  <!-- 
   <parent>
     <groupId>com.github.lafa.tikaNoExternal</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <relativePath>tika-parent/pom.xml</relativePath>
   </parent>
+  -->
 
+  <groupId>com.github.lafa.tikaNoExternal</groupId>
   <artifactId>tikaNoExternal</artifactId>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
   <name>Apache Tika</name>
   <url>http://tika.apache.org</url>
 
   <modules>
-    <module>tika-parent</module>
     <module>tika-core</module>
     <module>tika-parsers</module>
     
     <!-- 
+    <module>tika-parent</module>
     <module>tika-xmp</module>
     <module>tika-serialization</module>
     <module>tika-batch</module>
