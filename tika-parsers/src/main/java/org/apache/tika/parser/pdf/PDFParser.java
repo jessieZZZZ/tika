@@ -61,7 +61,6 @@ import org.apache.tika.parser.AbstractParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.PasswordProvider;
 import org.apache.tika.parser.image.xmp.JempboxExtractor;
-import org.apache.tika.parser.ocr.TesseractOCRParser;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.w3c.dom.Document;
 import org.xml.sax.ContentHandler;
@@ -113,7 +112,7 @@ public class PDFParser extends AbstractParser {
             InputStream stream, ContentHandler handler,
             Metadata metadata, ParseContext context)
             throws IOException, SAXException, TikaException {
-
+    	
         PDFParserConfig localConfig = context.get(PDFParserConfig.class, defaultConfig);
 
         PDDocument pdfDocument = null;
@@ -142,11 +141,11 @@ public class PDFParser extends AbstractParser {
                 if (shouldHandleXFAOnly(pdfDocument, localConfig)) {
                     handleXFAOnly(pdfDocument, handler, metadata, context);
                 } else if (localConfig.getOcrStrategy().equals(PDFParserConfig.OCR_STRATEGY.OCR_ONLY)) {
-                    metadata.add("X-Parsed-By", TesseractOCRParser.class.toString());
+                    metadata.add("X-Parsed-By", "class org.apache.tika.parser.ocr.TesseractOCRParser");
                     OCR2XHTML.process(pdfDocument, handler, context, metadata, localConfig);
                 } else {
                     if (localConfig.getOcrStrategy().equals(PDFParserConfig.OCR_STRATEGY.OCR_AND_TEXT_EXTRACTION)) {
-                        metadata.add("X-Parsed-By", TesseractOCRParser.class.toString());
+                        metadata.add("X-Parsed-By", "class org.apache.tika.parser.ocr.TesseractOCRParser");
                     }
                     PDF2XHTML.process(pdfDocument, handler, context, metadata, localConfig);
                 }

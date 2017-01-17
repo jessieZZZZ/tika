@@ -34,7 +34,6 @@ import org.apache.tika.parser.DefaultParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.RecursiveParserWrapper;
-import org.apache.tika.parser.external.ExternalParser;
 import org.apache.tika.parser.image.ImageParser;
 import org.apache.tika.parser.pdf.PDFParserConfig;
 import org.apache.tika.sax.BasicContentHandlerFactory;
@@ -52,7 +51,7 @@ public class TesseractOCRParserTest extends TikaTest {
     private boolean canRun(TesseractOCRConfig config) {
         String[] checkCmd = {config.getTesseractPath() + getTesseractProg()};
         // If Tesseract is not on the path, do not run the test.
-        return ExternalParser.check(checkCmd);
+        return true;
     }
 
     /*
@@ -217,7 +216,7 @@ public class TesseractOCRParserTest extends TikaTest {
                 "/test-properties/TesseractOCR.properties");
     	TesseractOCRConfig config = new TesseractOCRConfig(stream);
     	String[] CheckCmd = {config.getImageMagickPath() + TesseractOCRParser.getImageMagickProg()};
-    	assumeTrue(ExternalParser.check(CheckCmd));
+    	assumeTrue(true);
     }
     
     @Test

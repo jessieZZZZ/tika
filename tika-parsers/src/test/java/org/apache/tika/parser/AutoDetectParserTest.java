@@ -39,9 +39,6 @@ import org.apache.tika.metadata.TikaCoreProperties;
 import org.apache.tika.metadata.XMPDM;
 import org.apache.tika.mime.MediaType;
 import org.apache.tika.sax.BodyContentHandler;
-import org.gagravarr.tika.FlacParser;
-import org.gagravarr.tika.OpusParser;
-import org.gagravarr.tika.VorbisParser;
 import org.junit.Test;
 import org.xml.sax.ContentHandler;
 
@@ -303,21 +300,6 @@ public class AutoDetectParserTest {
                MediaType.parse(OGG_VORBIS), MediaType.parse(FLAC_NATIVE),
                MediaType.parse(OGG_FLAC), MediaType.parse(OGG_OPUS)
        };
-       
-       // Check we can load the parsers, and they claim to do the right things
-       VorbisParser vParser = new VorbisParser();
-       assertNotNull("Parser not found for " + mediaTypes[0], 
-                     vParser.getSupportedTypes(new ParseContext()));
-       
-       FlacParser fParser = new FlacParser();
-       assertNotNull("Parser not found for " + mediaTypes[1], 
-                     fParser.getSupportedTypes(new ParseContext()));
-       assertNotNull("Parser not found for " + mediaTypes[2], 
-                     fParser.getSupportedTypes(new ParseContext()));
-       
-       OpusParser oParser = new OpusParser();
-       assertNotNull("Parser not found for " + mediaTypes[3], 
-                     oParser.getSupportedTypes(new ParseContext()));
        
        // Check we found the parser
        CompositeParser parser = (CompositeParser)tika.getParser();
