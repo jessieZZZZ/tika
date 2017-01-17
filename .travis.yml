@@ -1,3 +1,8 @@
+branches:
+  only:
+  - master
+  - stable
+  
 language: java
 env:
   global:
@@ -12,7 +17,7 @@ jdk:
 before_install:
  
 install: 
- - mvn install -P !build-extras -Dgpg.skip=true -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+ - mvn install -Dgpg.skip=true -DskipTests=true -P !build-extras -B -V
  
 before_script:  
 script: mvn test -P !build-extras -B
