@@ -36,7 +36,8 @@
     <module>tika-core</module>
     <module>tika-parsers</module>
     
-    <!-- 
+    <!-- removed modules not being used.
+    
     <module>tika-xmp</module>
     <module>tika-serialization</module>
     <module>tika-batch</module>
