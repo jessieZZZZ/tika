@@ -37,8 +37,8 @@
   <modules>
     <module>tika-core</module>
     <module>tika-parsers</module>
-    
-    <!-- 
+
+    <!-- removed modules not being used.
     <module>tika-parent</module>
     <module>tika-xmp</module>
     <module>tika-serialization</module>
