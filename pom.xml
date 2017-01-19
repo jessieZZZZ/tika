@@ -18,18 +18,15 @@
   under the License.
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!-- 
+
   <parent>
     <groupId>com.github.lafa.tikaNoExternal</groupId>
     <artifactId>tika-parent</artifactId>
     <version>1.0.1</version>
     <relativePath>tika-parent/pom.xml</relativePath>
   </parent>
-  -->
 
-  <groupId>com.github.lafa.tikaNoExternal</groupId>
   <artifactId>tikaNoExternal</artifactId>
-  <version>1.0.1</version>
   <packaging>pom</packaging>
   <name>Apache Tika</name>
   <url>http://tika.apache.org</url>
@@ -62,6 +59,7 @@
       </properties>
       <build>
         <plugins>
+                   
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
@@ -181,6 +179,32 @@ least three +1 Tika PMC votes are cast.
     <name>The Apache Software Foundation</name>
     <url>http://www.apache.org</url>
   </organization>
+  
+    <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+      <scm>
+        <developerConnection>scm:git:https://github.com/lafaspot/tika.git</developerConnection>
+        <connection>scm:git:https://github.com/lafaspot/tika.git</connection>
+        <url>https://github.com/lafaspot/tika.git</url>
+        <tag>tikaNoExternal-.1</tag>
+    </scm>
+    <developers>
+            <developer>
+            <id>lafa</id>
+            <name>Lafa</name>
+            <email>luis.alves@lafaspot.com</email>
+        </developer>
+        <developer>
+            <id>kraman</id>
+            <name>Kumar Raman</name>
+            <email>kumar.raman@yahoo.com</email>
+        </developer>
+  </developers>
   <issueManagement>
     <system>JIRA</system>
     <url>https://issues.apache.org/jira/browse/TIKA</url>
