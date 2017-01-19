@@ -63,7 +63,6 @@ import org.apache.tika.parser.AbstractParser;
 import org.apache.tika.parser.CompositeParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
-import org.apache.tika.parser.external.ExternalParser;
 import org.apache.tika.parser.image.ImageParser;
 import org.apache.tika.parser.image.TiffParser;
 import org.apache.tika.parser.jpeg.JpegParser;
@@ -135,7 +134,7 @@ public class TesseractOCRParser extends AbstractParser {
         }
         // Try running Tesseract from there, and see if it exists + works
         String[] checkCmd = { tesseract };
-        boolean hasTesseract = ExternalParser.check(checkCmd);
+        boolean hasTesseract = false;
         TESSERACT_PRESENT.put(tesseract, hasTesseract);
         return hasTesseract;
      
@@ -152,7 +151,7 @@ public class TesseractOCRParser extends AbstractParser {
 
         // Try running ImageMagick program from there, and see if it exists + works
         String[] checkCmd = { ImageMagick };
-        boolean hasImageMagick = ExternalParser.check(checkCmd);
+        boolean hasImageMagick = false;
         TESSERACT_PRESENT.put(ImageMagick, hasImageMagick);
         
         return hasImageMagick;

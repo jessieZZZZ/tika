@@ -92,15 +92,7 @@ class OCR2XHTML extends AbstractPDF2XHTML {
 
     @Override
     public void processPage(PDPage pdPage) throws IOException {
-        try {
-            startPage(pdPage);
-            doOCROnCurrentPage();
-            endPage(pdPage);
-        } catch (TikaException|SAXException e) {
-            throw new IOExceptionWithCause(e);
-        } catch (IOException e) {
-            handleCatchableIOE(e);
-        }
+    	//no-op
     }
 
     @Override

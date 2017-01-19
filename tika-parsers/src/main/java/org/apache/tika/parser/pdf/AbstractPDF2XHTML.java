@@ -86,8 +86,6 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.PDF;
 import org.apache.tika.metadata.TikaCoreProperties;
 import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.ocr.TesseractOCRConfig;
-import org.apache.tika.parser.ocr.TesseractOCRParser;
 import org.apache.tika.sax.EmbeddedContentHandler;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.xml.sax.ContentHandler;
@@ -128,8 +126,6 @@ class AbstractPDF2XHTML extends PDFTextStripper {
      * Prevents theoretical AcroForm recursion bomb.
      */
     private final static int MAX_ACROFORM_RECURSIONS = 10;
-
-    private final static TesseractOCRConfig DEFAULT_TESSERACT_CONFIG = new TesseractOCRConfig();
 
     /**
      * Format used for signature dates
@@ -308,41 +304,6 @@ class AbstractPDF2XHTML extends PDFTextStripper {
         }
     }
 
-    void doOCROnCurrentPage() throws IOException, TikaException, SAXException {
-        if (config.getOcrStrategy().equals(NO_OCR)) {
-            return;
-        }
-        TesseractOCRConfig tesseractConfig =
-                context.get(TesseractOCRConfig.class, DEFAULT_TESSERACT_CONFIG);
-
-        TesseractOCRParser tesseractOCRParser = new TesseractOCRParser();
-        if (! tesseractOCRParser.hasTesseract(tesseractConfig)) {
-            throw new TikaException("Tesseract is not available. "+
-                    "Please set the OCR_STRATEGY to NO_OCR or configure Tesseract correctly");
-        }
-
-        PDFRenderer renderer = new PDFRenderer(pdDocument);
-        TemporaryResources tmp = new TemporaryResources();
-        try {
-            BufferedImage image = renderer.renderImage(pageIndex, 2.0f, config.getOcrImageType());
-            Path tmpFile = tmp.createTempFile();
-            try (OutputStream os = Files.newOutputStream(tmpFile)) {
-                //TODO: get output format from TesseractConfig
-                ImageIOUtil.writeImage(image, config.getOcrImageFormatName(),
-                        os, config.getOcrDPI());
-            }
-            try (InputStream is = TikaInputStream.get(tmpFile)) {
-                tesseractOCRParser.parseInline(is, xhtml, tesseractConfig);
-            }
-        } catch (IOException e) {
-            handleCatchableIOE(e);
-        } catch (SAXException e) {
-            throw new IOExceptionWithCause("error writing OCR content from PDF", e);
-        } finally {
-            tmp.dispose();
-        }
-    }
-
     @Override
     protected void endPage(PDPage page) throws IOException {
 
@@ -420,9 +381,6 @@ class AbstractPDF2XHTML extends PDFTextStripper {
                         }
                     }
                 }
-            }
-            if (config.getOcrStrategy().equals(PDFParserConfig.OCR_STRATEGY.OCR_AND_TEXT_EXTRACTION)) {
-                doOCROnCurrentPage();
             }
 
             PDPageAdditionalActions pageActions = page.getActions();

@@ -2,14 +2,15 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  
   <parent>
-    <groupId>com.github.lafaspot.tikaNoExternal</groupId>
-    <artifactId>tikaNoExternal</artifactId>
+    <groupId>com.github.lafa.tikaNoExternal</groupId>
+    <artifactId>tika-parent</artifactId>
     <version>1.0.0</version>
+    <relativePath>../tika-parent/pom.xml</relativePath>
   </parent>
-  <groupId>com.github.lafaspot.tikaNoExternal</groupId>
+  
   <artifactId>tika-external</artifactId>
-  <version>1.0.0</version>
   <name>tika-external</name>
   <url>http://maven.apache.org</url>
   
@@ -22,6 +23,11 @@
 <dependency>
 <groupId>${project.groupId}</groupId>
 <artifactId>tika-core</artifactId>
+<version>${project.version}</version>
+</dependency>
+<dependency>
+<groupId>${project.groupId}</groupId>
+<artifactId>tika-parsers</artifactId>
 <version>${project.version}</version>
 </dependency>
 <dependency>
@@ -45,6 +51,13 @@
 <groupId>junit</groupId>
 <artifactId>junit</artifactId>
 </dependency>
+<dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>tika-core</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
 <dependency>
 <groupId>org.slf4j</groupId>
 <artifactId>slf4j-log4j12</artifactId>

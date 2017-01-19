@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.github.lafa.tikaNoExternal</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <relativePath>../tika-parent/pom.xml</relativePath>
   </parent>
 
@@ -77,11 +77,13 @@
     </dependency>
 
     <!-- Externally Maintained Parsers -->
+    <!-- 
     <dependency>
       <groupId>org.gagravarr</groupId>
       <artifactId>vorbis-java-tika</artifactId>
       <version>${vorbis.version}</version>
     </dependency>
+    -->
     <dependency>
       <groupId>com.healthmarketscience.jackcess</groupId>
       <artifactId>jackcess</artifactId>
@@ -257,14 +259,6 @@
       <artifactId>cxf-rt-rs-client</artifactId>
       <version>${cxf.version}</version>
     </dependency>
-    <!-- TIKA-2021: Tesseract OCR Parser dependencies, 
-    used for executing image processing script -->
-	<dependency>
-	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-exec</artifactId>
-	    <version>${commonsexec.version}</version>
-	    <scope>compile</scope>
-	</dependency>
 
     <!-- Provided dependencies -->
     <dependency>
